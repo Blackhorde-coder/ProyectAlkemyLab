@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+@*BLACKHORDENOT*@
+@*sa*@
+@*34671716*@
+<h2>Login</h2>
+
+<div class="row">
+    <form id="frm">
+        <div class="col-lg-6 col-lg-offset-3">
+            <div class="form-group">
+                <label>User:</label>
+                <input type="text" name="user" />
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" />
+            </div>
+            <div class="form-group">
+                <input type="radio" name="type" value="false" />Student
+            </div>
+            <div class="form-group">
+                <input type="radio" name="type" value="true" />Administrator
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Login" />
+            </div>
+        </div>
+    </form>
+</div>
+@section scripts
+{
+    <script>
+    $(document).ready(function () {
+        $("#frm").submit(function (e) {
+            e.preventDefault();
+            url = "@Url.Content("~/Login/Enter")"
+            parametros = $(this).serialize();
+
+            $.post(url, parametros, function (data)
+            {
+                if (data == "1")
+                {
+                    document.location.href = "@Url.Content("~/")";
+                }
+                else
+                {
+                    alert(data)
+                }
+            })
+        })
+    })
+
+    </script>
+}

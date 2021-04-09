@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="663bedd08f024c298ede34aed1556ab3" Name="Diagram1">
+        <EntityTypeShape EntityType="AlkemyLabModel.inscription" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlkemyLabModel.subject_matter" Width="1.5" PointX="5.375" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlkemyLabModel.teacher" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <AssociationConnector Association="AlkemyLabModel.FK_inscription_subject_matter" ManuallyRouted="false" />
+        <AssociationConnector Association="AlkemyLabModel.FK_subject_matter_teacher" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AlkemyLabModel.User" Width="1.5" PointX="7.375" PointY="1" />
+        <AssociationConnector Association="AlkemyLabModel.FK_inscription_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

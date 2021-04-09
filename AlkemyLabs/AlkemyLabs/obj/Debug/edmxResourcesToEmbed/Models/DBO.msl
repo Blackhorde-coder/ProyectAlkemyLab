@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlkemyLabModelStoreContainer" CdmEntityContainer="AlkemyLabEntities">
+    <EntitySetMapping Name="inscription">
+      <EntityTypeMapping TypeName="AlkemyLabModel.inscription">
+        <MappingFragment StoreEntitySet="inscription">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_matter" ColumnName="id_matter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="subject_matter">
+      <EntityTypeMapping TypeName="AlkemyLabModel.subject_matter">
+        <MappingFragment StoreEntitySet="subject_matter">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="id_teacher" ColumnName="id_teacher" />
+          <ScalarProperty Name="quota" ColumnName="quota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teacher">
+      <EntityTypeMapping TypeName="AlkemyLabModel.teacher">
+        <MappingFragment StoreEntitySet="teacher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="AlkemyLabModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Administrator" ColumnName="Administrator" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="oUser" ColumnName="oUser" />
+          <ScalarProperty Name="Regular" ColumnName="Regular" />
+          <ScalarProperty Name="Record" ColumnName="Record" />
+          <ScalarProperty Name="DNI" ColumnName="DNI" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

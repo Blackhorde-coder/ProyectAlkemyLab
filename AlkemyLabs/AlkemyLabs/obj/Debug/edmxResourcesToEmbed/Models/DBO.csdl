@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlkemyLabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="inscription">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_matter" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="subject_matter" Relationship="Self.FK_inscription_subject_matter" FromRole="inscription" ToRole="subject_matter" />
+    <NavigationProperty Name="User" Relationship="AlkemyLabModel.FK_inscription_User" FromRole="inscription" ToRole="User" />
+  </EntityType>
+  <EntityType Name="subject_matter">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_teacher" Type="Int32" Nullable="false" />
+    <Property Name="quota" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="inscription" Relationship="Self.FK_inscription_subject_matter" FromRole="subject_matter" ToRole="inscription" />
+    <NavigationProperty Name="teacher" Relationship="Self.FK_subject_matter_teacher" FromRole="subject_matter" ToRole="teacher" />
+  </EntityType>
+  <EntityType Name="teacher">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DNI" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="subject_matter" Relationship="Self.FK_subject_matter_teacher" FromRole="teacher" ToRole="subject_matter" />
+  </EntityType>
+  <Association Name="FK_inscription_subject_matter">
+    <End Role="subject_matter" Type="Self.subject_matter" Multiplicity="1" />
+    <End Role="inscription" Type="Self.inscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="subject_matter">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inscription">
+        <PropertyRef Name="id_matter" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_subject_matter_teacher">
+    <End Role="teacher" Type="Self.teacher" Multiplicity="1" />
+    <End Role="subject_matter" Type="Self.subject_matter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teacher">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="subject_matter">
+        <PropertyRef Name="id_teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlkemyLabEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="inscription" EntityType="Self.inscription" />
+    <EntitySet Name="subject_matter" EntityType="Self.subject_matter" />
+    <EntitySet Name="teacher" EntityType="Self.teacher" />
+    <AssociationSet Name="FK_inscription_subject_matter" Association="Self.FK_inscription_subject_matter">
+      <End Role="subject_matter" EntitySet="subject_matter" />
+      <End Role="inscription" EntitySet="inscription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_subject_matter_teacher" Association="Self.FK_subject_matter_teacher">
+      <End Role="teacher" EntitySet="teacher" />
+      <End Role="subject_matter" EntitySet="subject_matter" />
+    </AssociationSet>
+    <EntitySet Name="User" EntityType="AlkemyLabModel.User" />
+    <AssociationSet Name="FK_inscription_User" Association="AlkemyLabModel.FK_inscription_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="inscription" EntitySet="inscription" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="DNI" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="Record" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Regular" Type="Boolean" Nullable="false" />
+    <Property Name="oUser" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Administrator" Type="Boolean" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="inscription" Relationship="AlkemyLabModel.FK_inscription_User" FromRole="User" ToRole="inscription" />
+  </EntityType>
+  <Association Name="FK_inscription_User">
+    <End Type="AlkemyLabModel.User" Role="User" Multiplicity="1" />
+    <End Type="AlkemyLabModel.inscription" Role="inscription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="inscription">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

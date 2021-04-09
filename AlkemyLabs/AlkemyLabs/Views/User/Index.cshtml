@@ -1,0 +1,35 @@
+﻿@model List<AlkemyLabs.Models.TableViewModels.MattersTaleViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Materias</h2>
+<div>
+    <div>
+        <input type="button" class="btn btn-primary" onclick="document.location.href ='@Url.Content("~/User/Add")'" value="NUEVO"/>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-12">
+        <table class="table table-bordered">
+            <tr>
+                <th>Matter</th>
+                <th>Description</th>
+                <th>teacher</th>
+                <th>quota</th>
+            </tr>
+            @foreach (var e in Model)
+            {
+                <tr>
+                    <td>@e.name</td>
+                    <td>@e.description</td>
+                    <td>@e.teacher.Name  @e.teacher.Surname</td>
+                    <td>@e.quota</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>
+
